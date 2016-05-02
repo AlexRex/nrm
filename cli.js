@@ -110,7 +110,13 @@ function onUse(name){
                 exit(err);
             }
 
-            conf.set('registry', registry.registry, 'user');
+            conf.set('_auth', '', 'user');
+            conf.set('email', '', 'user');
+            conf.set('always-auth', '', 'user');
+            for(var propertyName in registry) {
+                conf.set(propertyName, registry[propertyName] ? registry[propertyName] : '', 'user');
+            }
+
             conf.save('user', function(err){
                 if(err){
                     exit(err);
