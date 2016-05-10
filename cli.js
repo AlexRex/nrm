@@ -110,9 +110,7 @@ function onUse(name){
                 exit(err);
             }
 
-            conf.set('_auth', '', 'user');
-            conf.set('email', '', 'user');
-            conf.set('always-auth', '', 'user');
+            conf.set('always-auth', 'false', 'user');
             for(var propertyName in registry) {
                 conf.set(propertyName, registry[propertyName] ? registry[propertyName] : '', 'user');
             }
@@ -263,6 +261,10 @@ function setCustomRegistry(config, cbk){
 
 function getAllRegistry(){
     return extend({}, registries, getCustomRegistry());
+}
+
+function cleanRegistry(){
+
 }
 
 function printErr(err){
